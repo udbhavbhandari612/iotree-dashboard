@@ -1,30 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef } from "react";
+import SvgGauge from "svg-gauge";
 
-export default function Dial({
-  pin = "Temperature",
-  min,
-  max,
-  unit = "°C",
-  value = 20,
-  threshhold = 0,
-}) {
-  const [strokeOffset, setStrokeOffset] = useState(5);
+const Dial = ({ min, max, value, unit, unitLabel }) => {
+  const gaugeEl = useRef(null);
+  const gaugeRef = useRef(null);
+  useEffect(() => {
+    if (!gaugeRef.current) {
+      gaugeRef.current = SvgGauge(gaugeEl.current, {
+        min,
+        max,
+        animDuration: 1,
+        showValue: true,
+        label: () => `${value}${unit}`,
+      });
+      gaugeRef.current.setValue(0);
+    }
+    gaugeRef.current.setValueAnimated(value, 1);
+  }, [min, max, value, unit]);
 
   return (
-    <div className="dial-container">
-      <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-        <circle
-          cx="7rem"
-          cy="7rem"
-          r="6rem"
-          strokeDashoffset={`-${strokeOffset}rem`}
-        />
-      </svg>
+    <div ref={gaugeEl} className="gauge-container">
       <div className="outer">
-      <div className="text">{`${value}${unit}`}</div>
         <div className="inner"></div>
       </div>
-      <div className="pin">{pin}</div>
+      <div className="pin">{unitLabel}</div>
     </div>
   );
-}
+};
+
+export default Dial;

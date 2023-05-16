@@ -1,36 +1,40 @@
-.dial-container {
+/* ------ Default Style ---------- */
+.gauge-container {
   width: 14rem;
   height: 14rem;
-  position: relative;
   display: flex;
   background: rgb(101, 96, 119);
   justify-content: center;
   align-items: center;
-  border-radius: 50%;
   box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
-    -6px -6px 10px -1px rgba(255, 255, 255, 0.5);
-  svg {
-    width: 14rem;
-    height: 14rem;
-    circle {
-      fill: none;
-      stroke: rgb(255, 121, 13);
-      stroke-width: 0.3rem;
-      stroke-dasharray: 30rem;
-    //   stroke-dashoffset: -5rem;
+    -6px -6px 10px -1px rgba(255, 255, 255, 0.5),
+    inset 6px 6px 10px -1px rgba(255, 255, 255, 0.1),
+    inset -6px -6px 10px -1px rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  padding: 0.5rem;
+  position: relative;
+
+  .gauge {
+    position: relative;
+    .dial {
+      stroke-width: 0.08rem;
+      stroke: rgb(51, 45, 67);
       stroke-linecap: round;
-      transform: rotateY(180deg) rotate(80deg);
-      transform-origin: center;
-      transition: stroke-dashoffset 1.5s ease-out;
+    }
+    .value {
+      fill: rgba(0, 0, 0, 0);
+      stroke: rgb(255, 121, 13);
+      stroke-width: 0.16rem;
+      stroke-linecap: round;
       filter: drop-shadow(5px 5px 15px rgba(255, 121, 13, 1));
     }
-  }
-  .text {
-    position: absolute;
-    color: grey;
-    font-weight: 400;
-    font-size: 1.4rem;
-    z-index: 5;
+    .value-text {
+      fill: grey;
+      font-size: 0.8rem;
+      opacity: 0;
+      animation: blow_opacity 1s ease-out forwards;
+      font-family: "Montserrat", sans-serif;
+    }
   }
   .outer {
     position: absolute;
@@ -43,7 +47,7 @@
     border-radius: 50%;
     scale: 0;
     overflow: hidden;
-    animation: blow 1.5s ease-out forwards;
+    animation: blow 1s ease-out forwards;
     box-shadow: 0 0 10px -1px rgba(0, 0, 0, 0.5);
     .inner {
       position: absolute;
@@ -57,7 +61,7 @@
   }
   .pin {
     position: absolute;
-    bottom: 0.9rem;
+    bottom: 1.2rem;
     color: rgb(38, 38, 38);
     font-size: 1rem;
     font-weight: 500;
@@ -70,5 +74,13 @@
   }
   100% {
     scale: 1;
+  }
+}
+@keyframes blow_opacity {
+  60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
