@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import SvgGauge from "svg-gauge";
 
-const Dial = ({ min, max, value, unit, unitLabel }) => {
+const Dial = ({ min, max, value, unit, name, pin }) => {
   const gaugeEl = useRef(null);
   const gaugeRef = useRef(null);
   useEffect(() => {
@@ -16,14 +16,14 @@ const Dial = ({ min, max, value, unit, unitLabel }) => {
       gaugeRef.current.setValue(0);
     }
     gaugeRef.current.setValueAnimated(value, 1);
-  }, [min, max, value, unit]);
+  }, [min, max, value, unit, name, pin]);
 
   return (
     <div ref={gaugeEl} className="gauge-container">
       <div className="outer">
         <div className="inner"></div>
       </div>
-      <div className="pin">{unitLabel}</div>
+      <div className="pin">{name || pin}</div>
     </div>
   );
 };

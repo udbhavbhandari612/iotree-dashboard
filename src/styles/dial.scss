@@ -1,7 +1,7 @@
-/* ------ Default Style ---------- */
 .gauge-container {
   width: 14rem;
   height: 14rem;
+  margin: 1rem;
   display: flex;
   background: rgb(101, 96, 119);
   justify-content: center;
@@ -30,7 +30,9 @@
     }
     .value-text {
       fill: grey;
-      font-size: 0.8rem;
+      font-size: 0.6rem;
+      max-width: 20%;
+      overflow: hidden;
       opacity: 0;
       animation: blow_opacity 1s ease-out forwards;
       font-family: "Montserrat", sans-serif;
@@ -41,8 +43,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 9rem;
-    height: 9rem;
+    width: 60%;
+    height: 60%;
     background-color: rgb(227, 228, 237);
     border-radius: 50%;
     scale: 0;
@@ -51,8 +53,8 @@
     box-shadow: 0 0 10px -1px rgba(0, 0, 0, 0.5);
     .inner {
       position: absolute;
-      width: 6rem;
-      height: 6rem;
+      width: 80%;
+      height: 80%;
       background-color: rgb(248, 249, 250);
       border-radius: 50%;
       box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
@@ -61,10 +63,12 @@
   }
   .pin {
     position: absolute;
-    bottom: 1.2rem;
+    bottom: 8%;
     color: rgb(38, 38, 38);
-    font-size: 1rem;
+    font-size: 0.9rem;
+    width: 100%;
     font-weight: 500;
+    font-family: "Montserrat", sans-serif;
   }
 }
 
